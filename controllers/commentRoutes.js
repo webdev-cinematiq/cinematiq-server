@@ -6,7 +6,10 @@ import {
   deleteComment,
 } from '../models/dao/comments';
 
-import { findDiscussionById } from '../models/dao/discussions';
+import {
+  addCommentToDiscussion,
+  removeCommentFromDiscussion,
+} from '../dao/discussions';
 
 export default function CommentRoutes(app) {
   const getAllComments = async (req, res) => {
@@ -49,8 +52,10 @@ export default function CommentRoutes(app) {
 
   const createNewComment = async (req, res) => {
     try {
-      const newComment = await createComment(req.body);
-      res.status(201).json(newComment);
+      const { did } = req.params;
+      const newComment = await createComment({ ...req.body });
+      const updatedPost = await addCommentToDiscussion(did, newComment._id);
+      res.status(201).json({ newComment, updatedPost });
     } catch (error) {
       console.error(error);
       res.status(400).json({ message: error.message });
@@ -78,6 +83,9 @@ export default function CommentRoutes(app) {
       if (!deletedComment) {
         return res.status(404).json({ message: 'Comment not found' });
       }
+
+      await removeCommentFromDiscussion(deletedComment.discussion, cid);
+
       res.status(200).json({ message: 'Comment deleted' });
     } catch (error) {
       console.error(error);
@@ -88,8 +96,8 @@ export default function CommentRoutes(app) {
   // Define routes
   app.get('/api/comments/', getAllComments);
   app.get('/api/comments/:cid', getCommentById);
-  app.get('/api/discussions/:did/comments/', getCommentByDiscussion);
-  app.post('/api/comments/', createNewComment);
+  app.get('/api/discussions/:did/comments', getCommentsByDiscussion);
+  app.post('/api/discussions/:did/comments', createNewComment);
   app.put('/api/comments/:cid', updateExistingComment);
   app.delete('/api/comments/:cid', deleteExistingComment);
 }

@@ -24,7 +24,7 @@ export const findUserByCredentials = async (name, password) => {
 export const createUser = async (userData) => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
-  const user = new User({ ...userData, password: hashedPassword, joinDate: new Date() });
+  const user = new User({ ...userData, password: hashedPassword });
   return await user.save();
 };
 
