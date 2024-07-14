@@ -94,7 +94,7 @@ export default function CommentRoutes(app) {
   };
 
   // Define routes
-  app.get('/api/comments/', getAllComments);
+  app.get('/api/comments', getAllComments);
   app.get('/api/comments/:cid', getCommentById);
   app.get('/api/discussions/:did/comments', getCommentsByDiscussion);
   app.post('/api/discussions/:did/comments', createNewComment);

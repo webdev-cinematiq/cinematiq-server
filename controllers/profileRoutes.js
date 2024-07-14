@@ -84,10 +84,10 @@ export default function ProfileRoutes(app) {
     }
   };
 
-  app.get('/api/profiles/', getAllProfiles);
+  app.get('/api/profiles', getAllProfiles);
   app.get('/api/profiles/:pid', getProfileById);
   app.get('/api/user/:uid/profile', getProfileByUserId);
-  app.post('/api/profiles/', createNewProfile);
+  app.post('/api/profiles', createNewProfile);
   app.put('/api/profiles/:pid', updateExistingProfile);
   app.delete('/api/profiles/:pid', deleteExistingProfile);
 }

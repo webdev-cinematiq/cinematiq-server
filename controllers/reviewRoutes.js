@@ -70,9 +70,9 @@ export default function ReviewRoutes(app) {
   };
 
   // define routes
-  app.get('/api/reviews/', getAllReviews);
+  app.get('/api/reviews', getAllReviews);
   app.get('/api/reviews/:rid', getReviewById);
-  app.post('/api/reviews/', createNewReview);
+  app.post('/api/reviews', createNewReview);
   app.put('/api/reviews/:rid', updateExistingReview);
   app.delete('/api/reviews/:rid', deleteExistingReview);
 }

@@ -70,9 +70,9 @@ export default function DiscussionRoutes(app) {
   };
 
   // Define routes
-  app.get('/api/discussions/', getAllDiscussions);
+  app.get('/api/discussions', getAllDiscussions);
   app.get('/api/discussions/:did', getDiscussionById);
-  app.post('/api/discussions/', createNewDiscussion);
+  app.post('/api/discussions', createNewDiscussion);
   app.put('/api/discussions/:did', updateExistingDiscussion);
   app.delete('/api/discussions/:did', deleteExistingDiscussion);
 }
