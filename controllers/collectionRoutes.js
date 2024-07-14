@@ -8,6 +8,8 @@ import {
   deleteCollection,
 } from '../models/dao/collections';
 
+import { addCollectionToProfile } from '../models/dao/profiles';
+
 export default function CollectionRoutes(app) {
   const getAllCollections = async (req, res) => {
     try {
@@ -63,8 +65,15 @@ export default function CollectionRoutes(app) {
 
   const createNewCollection = async (req, res) => {
     try {
+      const { name } = req.params;
       const newCollection = await createCollection(req.body);
-      res.status(201).json(newCollection);
+
+      const updatedProfile = await addCollectionToProfile(
+        name,
+        newCollection._id
+      );
+
+      res.status(201).json({ newCollection, updatedProfile });
     } catch (error) {
       console.error(error);
       res.status(400).json({ message: error.message });
@@ -103,7 +112,7 @@ export default function CollectionRoutes(app) {
   app.get('/api/collections/:cid', getCollectionById);
   app.get('/api/collections/:title', getCollectionsByTitle);
   app.get('/api/:name/collections', getCollectionsByUserName);
-  app.post('/api/collections', createNewCollection);
+  app.post('/api/:name/collections', createNewCollection);
   app.put('/api/collections/:cid', updateExistingCollection);
   app.delete('/api/collections/:cid', deleteExistingCollection);
 }

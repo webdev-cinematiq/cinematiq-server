@@ -1,6 +1,7 @@
 import {
   findAllUsers,
   findUserById,
+  findUserByName,
   createUser,
   updateUser,
   deleteUser,
@@ -21,6 +22,20 @@ export default function UserRoutes(app) {
     try {
       const { uid } = req.params;
       const user = await findUserById(uid);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  const getUserByName = async (req, res) => {
+    try {
+      const { name } = req.params;
+      const user = await findUserByName(name);
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
