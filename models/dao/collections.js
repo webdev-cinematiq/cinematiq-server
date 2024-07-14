@@ -1,4 +1,4 @@
-import Collection from '../models/schema/collection';
+import Collection from '../collections';
 
 export const findAllCollections = async () => {
   return await Collection.find().populate('author movies');

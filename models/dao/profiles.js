@@ -1,4 +1,4 @@
-import Profile from '../models/schema/profile';
+import Profile from '../profiles';
 
 export const findAllProfiles = async () => {
   return await Profile.find().populate('user favorites collections');
