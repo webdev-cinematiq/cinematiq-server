@@ -1,6 +1,10 @@
 import express from 'express';
-import CollectionRoutes from './controllers/collections/routes.js';
-import CommentRoutes from './controllers/comments/routes.js';
+import CollectionRoutes from './controllers/collectionRoutes.js';
+import CommentRoutes from './controllers/commentRoutes.js';
+import DiscussionRoutes from './controllers/discussionRoutes.js';
+import ProfileRoutes from './controllers/profileRoutes.js';
+import ReviewRoutes from './controllers/reviewRoutes.js';
+import UserRoutes from './controllers/userRoutes.js';
 
 const session = require('express-session');
 const mongoose = require('mongoose');
@@ -28,6 +32,10 @@ app.get('/', (req, res) => {
 /* routes for each feature */
 CollectionRoutes(app);
 CommentRoutes(app);
+DiscussionRoutes(app);
+ProfileRoutes(app);
+ReviewRoutes(app);
+UserRoutes(app);
 
 process.on('SIGINT', () => {
   server.close();
