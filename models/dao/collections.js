@@ -12,8 +12,8 @@ export const findCollectionByTitle = async (title) => {
   return await Collection.find({ title }).populate('author movies');
 };
 
-export const findCollectionsByUserName = async (userName) => {
-  return await Collection.find({ 'author.name': userName }).populate(
+export const findCollectionsByUserName = async (username) => {
+  return await Collection.find({ 'author.name': username }).populate(
     'author movies'
   );
 };

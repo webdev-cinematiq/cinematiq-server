@@ -1,4 +1,5 @@
 import Profile from '../profiles';
+import user from '../schema/user';
 import User from '../users';
 
 export const findAllProfiles = async () => {
@@ -9,8 +10,12 @@ export const findProfileById = async (id) => {
   return await Profile.findById(id).populate('user favorites collections');
 };
 
-export const findProfileByUserId = async (userId) => {
-  return await Profile.findOne({ user: userId }).populate(
+export const findProfileByUsername = async (username) => {
+  const user = await User.findOne({ name: username });
+  if (!user) {
+    throw new Error('User not found');
+  }
+  return await Profile.findOne({ user: user._id }).populate(
     'user favorites collections'
   );
 };

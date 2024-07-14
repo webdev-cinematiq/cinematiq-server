@@ -1,7 +1,7 @@
 import {
   findAllProfiles,
   findProfileById,
-  findProfileByUserId,
+  findProfileByUsername,
   createProfile,
   updateProfile,
   deleteProfile,
@@ -32,10 +32,10 @@ export default function ProfileRoutes(app) {
     }
   };
 
-  const getProfileByUserId = async (req, res) => {
+  const getProfileByUsername = async (req, res) => {
     try {
-      const { uid } = req.params;
-      const profile = await findProfileByUserId(uid);
+      const { name } = req.params;
+      const profile = await findProfileByUsername(name);
       if (!profile) {
         return res.status(404).json({ message: 'Profile not found' });
       }
@@ -84,10 +84,10 @@ export default function ProfileRoutes(app) {
     }
   };
 
-  app.get('/api/profiles', getAllProfiles);
+  app.get('/api/profiles', getAllProfiles); // probably don't need, no use case
   app.get('/api/profiles/:pid', getProfileById);
-  app.get('/api/user/:uid/profile', getProfileByUserId);
-  app.post('/api/profiles', createNewProfile);
-  app.put('/api/profiles/:pid', updateExistingProfile);
-  app.delete('/api/profiles/:pid', deleteExistingProfile);
+  app.get('/api/:name/profile', getProfileByUsername);
+  app.post('/api/:name/profile', createNewProfile);
+  app.put('/api/profile/:pid', updateExistingProfile);
+  app.delete('/api/profile/:pid', deleteExistingProfile);
 }
