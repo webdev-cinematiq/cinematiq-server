@@ -1,0 +1,32 @@
+{
+  "type": "module",
+  "name": "cinematiq-server",
+  "version": "1.0.0",
+  "description": "Node.js Http server for cinematiq",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdev-cinematiq/cinematiq.git"
+  },
+  "keywords": [
+    "Node",
+    "REST",
+    "Server",
+    "HTTP"
+  ],
+  "author": "Nancy Onyejiaka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webdev-cinematiq/cinematiq/issues"
+  },
+  "homepage": "https://github.com/webdev-cinematiq/cinematiq#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1"
+  }
+}
