@@ -88,7 +88,7 @@ export default function UserRoutes(app) {
   app.get('/api/users', getAllUsers);
   app.get('/api/users/:uid', getUserById);
   app.get('/api/users/:name', getUserByName);
-  app.post('/api/users/create', createNewUser);
+  app.post('/api/users', createNewUser);
   app.put('/api/users/:uid', updateExistingUser);
   app.delete('/api/users/:uid', deleteExistingUser);
 }
