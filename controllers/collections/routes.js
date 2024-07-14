@@ -1,4 +1,4 @@
-import Collection from '../models/collections';
+import Collection from '../../models/collections';
 
 export default function CollectionRoutes(app) {
   app.put('/api/collections/:cid', async (req, res) => {

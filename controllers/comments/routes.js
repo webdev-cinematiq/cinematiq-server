@@ -1,5 +1,5 @@
-import Comment from '../models/comments';
-import Discussion from '../models/discussions';
+import Comment from '../../models/comments';
+import Discussion from '../../models/discussions';
 
 export default function CommentRoutes(app) {
   app.put('/api/comments/:cid', async (req, res) => {
