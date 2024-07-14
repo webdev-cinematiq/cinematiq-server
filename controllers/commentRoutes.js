@@ -4,7 +4,7 @@ import {
   createComment,
   updateComment,
   deleteComment,
-} from '../dao/comments';
+} from '../models/dao/comments';
 
 export default function CommentRoutes(app) {
 

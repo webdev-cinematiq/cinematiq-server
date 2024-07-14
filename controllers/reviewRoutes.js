@@ -4,7 +4,7 @@ import {
   createReview,
   updateReview,
   deleteReview,
-} from '../dao/reviews';
+} from '../models/dao/reviews';
 
 export default function ReviewRoutes(app) {
   const getAllReviews = async (req, res) => {

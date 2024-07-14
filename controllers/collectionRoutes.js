@@ -1,51 +1,109 @@
-import Collection from '../models/collections';
+import {
+  findAllCollections,
+  findCollectionById,
+  findCollectionsByTitle,
+  findCollectionsByUserName,
+  createCollection,
+  updateCollection,
+  deleteCollection,
+} from '../models/dao/collections';
 
 export default function CollectionRoutes(app) {
-  app.put('/api/collections/:cid', async (req, res) => {
+  const getAllCollections = async (req, res) => {
     try {
-      const { cid } = req.params;
-      await Collection.updateOne({ _id: cid }, req.body);
-      res.sendStatus(204);
-    } catch (error) {
-      console.error(error);
-      res.sendStatus(500);
-    }
-  });
-
-  app.delete('/api/collections/:cid', async (req, res) => {
-    try {
-      const { cid } = req.params;
-      await Collection.deleteOne({ _id: cid });
-      res.sendStatus(200);
-    } catch (error) {
-      console.error(error);
-      res.sendStatus(500);
-    }
-  });
-
-  app.post('/api/users/:name/collections', async (req, res) => {
-    try {
-      const { name } = req.params;
-      const newCollection = new Collection({
-        ...req.body,
-        author: name,
-      });
-      await newCollection.save();
-      res.json(newCollection);
-    } catch (error) {
-      console.error(error);
-      res.sendStatus(500);
-    }
-  });
-
-  app.get('/api/users/:name/collections', async (req, res) => {
-    try {
-      const { name } = req.params;
-      const collections = await Collection.find({ author: name });
+      const collections = await findAllCollections();
       res.json(collections);
     } catch (error) {
       console.error(error);
-      res.sendStatus(500);
+      res.status(500).json({ message: error.message });
     }
-  });
+  };
+
+  const getCollectionById = async (req, res) => {
+    try {
+      const { cid } = req.params;
+      const collection = await findCollectionById(cid);
+      if (!collection) {
+        return res.status(404).json({ message: 'Collection not found' });
+      }
+      res.json(collection);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  const getCollectionsByTitle = async (req, res) => {
+    try {
+      const { name } = req.params;
+      const collections = await findCollectionsByTitle(name);
+      if (!collections || collections.length === 0) {
+        return res.status(404).json({ message: 'Collections not found' });
+      }
+      res.json(collections);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  const getCollectionsByUserName = async (req, res) => {
+    try {
+      const { name } = req.params;
+      const collections = await findCollectionsByUserName(name);
+      if (!collections || collections.length === 0) {
+        return res.status(404).json({ message: 'Collections not found' });
+      }
+      res.json(collections);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  const createNewCollection = async (req, res) => {
+    try {
+      const newCollection = await createCollection(req.body);
+      res.status(201).json(newCollection);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: error.message });
+    }
+  };
+
+  const updateExistingCollection = async (req, res) => {
+    try {
+      const { cid } = req.params;
+      const updatedCollection = await updateCollection(cid, req.body);
+      if (!updatedCollection) {
+        return res.status(404).json({ message: 'Collection not found' });
+      }
+      res.status(200).json(updatedCollection);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  const deleteExistingCollection = async (req, res) => {
+    try {
+      const { cid } = req.params;
+      const deletedCollection = await deleteCollection(cid);
+      if (!deletedCollection) {
+        return res.status(404).json({ message: 'Collection not found' });
+      }
+      res.status(200).json({ message: 'Collection deleted' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  app.get('/api/collections/', getAllCollections);
+  app.get('/api/collections/:cid', getCollectionById);
+  app.get('/api/collections/:title', getCollectionsByTitle);
+  app.get('/api/collections/:name', getCollectionsByUserName);
+  app.post('/api/collections/', createNewCollection);
+  app.put('/api/collections/:cid', updateExistingCollection);
+  app.delete('/api/collections/:cid', deleteExistingCollection);
 }
