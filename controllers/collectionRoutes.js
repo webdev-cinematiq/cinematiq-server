@@ -102,7 +102,7 @@ export default function CollectionRoutes(app) {
   app.get('/api/collections', getAllCollections);
   app.get('/api/collections/:cid', getCollectionById);
   app.get('/api/collections/:title', getCollectionsByTitle);
-  app.get('/api/collections/:name', getCollectionsByUserName);
+  app.get('/api/:name/collections', getCollectionsByUserName);
   app.post('/api/collections', createNewCollection);
   app.put('/api/collections/:cid', updateExistingCollection);
   app.delete('/api/collections/:cid', deleteExistingCollection);
