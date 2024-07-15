@@ -2,9 +2,11 @@ import express from 'express';
 import CollectionRoutes from './controllers/collectionRoutes.js';
 import CommentRoutes from './controllers/commentRoutes.js';
 import DiscussionRoutes from './controllers/discussionRoutes.js';
+import MovieRoutes from './controllers/movieRoutes.js';
 import ProfileRoutes from './controllers/profileRoutes.js';
 import ReviewRoutes from './controllers/reviewRoutes.js';
 import UserRoutes from './controllers/userRoutes.js';
+import TVRoutes from './controllers/tvRoutes.js';
 
 const session = require('express-session');
 const mongoose = require('mongoose');
@@ -33,8 +35,10 @@ app.get('/', (req, res) => {
 CollectionRoutes(app);
 CommentRoutes(app);
 DiscussionRoutes(app);
+MovieRoutes(app);
 ProfileRoutes(app);
 ReviewRoutes(app);
+TVRoutes(app);
 UserRoutes(app);
 
 process.on('SIGINT', () => {
