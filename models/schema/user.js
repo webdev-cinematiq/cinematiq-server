@@ -10,6 +10,7 @@ module.exports = mongoose.Schema(
       immutable: true,
     },
     name: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     reputation: { type: Number, required: true, default: 0 },
     join_date: { type: Date, required: true },
   },
