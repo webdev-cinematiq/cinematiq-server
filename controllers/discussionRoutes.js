@@ -4,7 +4,7 @@ import {
   createDiscussion,
   updateDiscussion,
   deleteDiscussion,
-} from '../models/dao/discussions';
+} from '../models/dao/discussions.js';
 
 export default function DiscussionRoutes(app) {
   const getAllDiscussions = async (req, res) => {

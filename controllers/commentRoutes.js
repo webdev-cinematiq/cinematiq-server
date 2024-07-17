@@ -4,12 +4,12 @@ import {
   createComment,
   updateComment,
   deleteComment,
-} from '../models/dao/comments';
+} from '../models/dao/comments.js';
 
 import {
   addCommentToDiscussion,
   removeCommentFromDiscussion,
-} from '../dao/discussions';
+} from '../models/dao/discussions.js';
 
 export default function CommentRoutes(app) {
   const getAllComments = async (req, res) => {

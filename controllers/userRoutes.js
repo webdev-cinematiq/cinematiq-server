@@ -5,7 +5,7 @@ import {
   createUser,
   updateUser,
   deleteUser,
-} from '../models/dao/users';
+} from '../models/dao/users.js';
 
 export default function UserRoutes(app) {
   const getAllUsers = async (req, res) => {

@@ -6,9 +6,9 @@ import {
   createCollection,
   updateCollection,
   deleteCollection,
-} from '../models/dao/collections';
+} from '../models/dao/collections.js';
 
-import { addCollectionToProfile } from '../models/dao/profiles';
+import { addCollectionToProfile } from '../models/dao/profiles.js';
 
 export default function CollectionRoutes(app) {
   const getAllCollections = async (req, res) => {

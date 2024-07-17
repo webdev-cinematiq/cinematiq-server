@@ -5,7 +5,7 @@ import {
   createProfile,
   updateProfile,
   deleteProfile,
-} from '../models/dao/profiles';
+} from '../models/dao/profiles.js';
 
 export default function ProfileRoutes(app) {
   const getAllProfiles = async (req, res) => {

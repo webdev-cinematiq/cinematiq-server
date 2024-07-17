@@ -2,12 +2,13 @@ import express from 'express';
 import CollectionRoutes from './controllers/collectionRoutes.js';
 import CommentRoutes from './controllers/commentRoutes.js';
 import DiscussionRoutes from './controllers/discussionRoutes.js';
+import MovieRoutes from './controllers/movieRoutes.js';
 import ProfileRoutes from './controllers/profileRoutes.js';
 import ReviewRoutes from './controllers/reviewRoutes.js';
 import UserRoutes from './controllers/userRoutes.js';
+import cors from 'cors';
 
-const session = require('express-session');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/cinematiq';
 const CLIENT_URL = 'http://localhost:3000'; // TODO: update as needed
@@ -15,13 +16,13 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 
-mongoose
-  .connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.error(err));
+// mongoose
+//   .connect(process.env.DATABASE_URL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log('MongoDB connected'))
+//   .catch((err) => console.error(err));
 
 app.use(cors());
 app.use(express.json());
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 CollectionRoutes(app);
 CommentRoutes(app);
 DiscussionRoutes(app);
+MovieRoutes(app);
 ProfileRoutes(app);
 ReviewRoutes(app);
 UserRoutes(app);
