@@ -13,8 +13,8 @@ const findById = (array, id) => array.find((item) => item._id === id);
 export const findAllReviews = async () => {
   return reviews.map((review) => ({
     ...review,
-    author: review.author.map((authorId) => findById(users, authorId)),
-    movie: review.movie.map((movieId) => findById(movies, movieId)),
+    author: findById(users, review.author),
+    movie: findById(movies, review.movie),
   }));
 };
 
@@ -23,8 +23,8 @@ export const findReviewById = async (id) => {
   if (review) {
     return {
       ...review,
-      author: review.author.map((authorId) => findById(users, authorId)),
-      movie: review.movie.map((movieId) => findById(movies, movieId)),
+      author: findById(users, review.author),
+      movie: findById(movies, review.movie),
     };
   }
   return null;
@@ -39,8 +39,8 @@ export const findReviewsByUsername = async (name) => {
     .filter((review) => review.author.includes(user._id))
     .map((review) => ({
       ...review,
-      author: review.author.map((authorId) => findById(users, authorId)),
-      movie: review.movie.map((movieId) => findById(movies, movieId)),
+      author: findById(users, review.author),
+      movie: findById(movies, review.movie),
     }));
 };
 

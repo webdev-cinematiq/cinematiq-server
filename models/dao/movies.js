@@ -12,8 +12,9 @@ export const findMovieById = async (id) => {
   return findById(movies, id);
 };
 
-export const findMovieByTitle = async (title) => {
-  return movies.find((movie) => movie.title === title);
+export const findMoviesByTitle = async (title) => {
+  const regex = new RegExp(title, 'i');
+  return movies.filter((movie) => regex.test(movie.title));
 };
 
 export const createMovie = async (movieData) => {

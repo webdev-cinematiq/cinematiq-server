@@ -1,7 +1,7 @@
 import {
   findAllMovies,
   findMovieById,
-  findMovieByTitle,
+  findMoviesByTitle,
   createMovie,
   updateMovie,
   deleteMovie,
@@ -32,14 +32,14 @@ export default function MovieRoutes(app) {
     }
   };
 
-  const getMovieByTitle = async (req, res) => {
+  const getMoviesByTitle = async (req, res) => {
     try {
       const { title } = req.params;
-      const movie = await findMovieByTitle(title);
-      if (!movie) {
-        return res.status(404).json({ message: 'Movie not found' });
+      const movies = await findMoviesByTitle(title);
+      if (!movies) {
+        return res.status(404).json({ message: 'Movies not found' });
       }
-      res.json(movie);
+      res.json(movies);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });
@@ -87,7 +87,7 @@ export default function MovieRoutes(app) {
   // define routes
   app.get('/api/movies', getAllMovies);
   app.get('/api/movies/:id', getMovieById);
-  app.get('/api/movies/title/:title', getMovieByTitle);
+  app.get('/api/movies/title/:title', getMoviesByTitle);
   app.post('/api/movies', createNewMovie);
   app.put('/api/movies/:id', updateExistingMovie);
   app.delete('/api/movies/:id', deleteExistingMovie);

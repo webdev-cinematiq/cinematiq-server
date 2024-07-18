@@ -6,6 +6,8 @@ export default [
     genre: 'Sci-Fi',
     release_date: new Date('2010-07-16'),
     rating: 8.8,
+    poster: 'https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg',
+    year: 2024,
   },
   {
     _id: 'movie2',
@@ -14,6 +16,8 @@ export default [
     genre: 'Sci-Fi',
     release_date: new Date('1999-03-31'),
     rating: 8.7,
+    poster: 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg',
+    year: 2024,
   },
   {
     _id: 'movie3',
@@ -22,6 +26,8 @@ export default [
     genre: 'Drama',
     release_date: new Date('1994-09-23'),
     rating: 9.3,
+    poster: 'https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg',
+    year: 2024,
   },
   {
     _id: 'movie4',
@@ -30,6 +36,8 @@ export default [
     genre: 'Crime',
     release_date: new Date('1972-03-24'),
     rating: 9.2,
+    poster: 'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
+    year: 2024,
   },
   {
     _id: 'movie5',
@@ -38,6 +46,8 @@ export default [
     genre: 'Action',
     release_date: new Date('2008-07-18'),
     rating: 9.0,
+    poster: 'https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg',
+    year: 2024,
   },
   {
     _id: 'movie6',
@@ -46,6 +56,8 @@ export default [
     genre: 'Crime',
     release_date: new Date('1994-10-14'),
     rating: 8.9,
+    poster: 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg',
+    year: 2024,
   },
   {
     _id: 'movie7',
@@ -54,6 +66,8 @@ export default [
     genre: 'Drama',
     release_date: new Date('1999-10-15'),
     rating: 8.8,
+    poster: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
+    year: 2024,
   },
   {
     _id: 'movie8',
@@ -62,6 +76,8 @@ export default [
     genre: 'Drama',
     release_date: new Date('1994-07-06'),
     rating: 8.8,
+    poster: 'https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg',
+    year: 2024,
   },
   {
     _id: 'movie9',
@@ -70,6 +86,8 @@ export default [
     genre: 'Fantasy',
     release_date: new Date('2001-12-19'),
     rating: 8.8,
+    poster: 'https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg',
+    year: 2024,
   },
   {
     _id: 'movie10',
@@ -78,5 +96,7 @@ export default [
     genre: 'Sci-Fi',
     release_date: new Date('1980-05-21'),
     rating: 8.7,
+    poster: 'https://image.tmdb.org/t/p/w500/7BuH8itoSrLExs2YZSsM01Qk2no.jpg',
+    year: 2024,
   },
 ];
