@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 module.exports = mongoose.Schema(
   {
     title: { type: String, required: true },
-    author: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     movies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }],
     created: { type: Date, required: true },
   },
