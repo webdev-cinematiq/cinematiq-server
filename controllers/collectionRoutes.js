@@ -3,6 +3,7 @@ import {
   findCollectionById,
   findCollectionsByTitle,
   findCollectionsByUserName,
+  findUserCollectionByTitle,
   createCollection,
   updateCollection,
   deleteCollection,
@@ -63,6 +64,20 @@ export default function CollectionRoutes(app) {
     }
   };
 
+  const getUserCollectionByTitle = async (req, res) => {
+    try {
+      const { name, titleId } = req.params;
+      const collections = await findUserCollectionByTitle(name, titleId);
+      if (!collections || collections.length === 0) {
+        return res.status(404).json({ message: 'Collections not found' });
+      }
+      res.json(collections);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
   const createNewCollection = async (req, res) => {
     try {
       const { name } = req.params;
@@ -108,10 +123,11 @@ export default function CollectionRoutes(app) {
     }
   };
 
-  app.get('/api/collections', getAllCollections);
+  app.get('/api/:name/collection/:titleId', getUserCollectionByTitle);
   app.get('/api/collections/:cid', getCollectionById);
-  app.get('/api/collections/:title', getCollectionsByTitle);
+  app.get('/api/collections/title/:title', getCollectionsByTitle);
   app.get('/api/:name/collections', getCollectionsByUserName);
+  app.get('/api/collections', getAllCollections);
   app.post('/api/:name/collection', createNewCollection);
   app.put('/api/:name/collections/:cid', updateExistingCollection);
   app.delete('/api/:name/collections/:cid', deleteExistingCollection);

@@ -2,6 +2,7 @@ export default [
   {
     _id: 'user1',
     role: 'VIEWER',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'nanabanana',
     password: 'password123',
     reputation: 10,

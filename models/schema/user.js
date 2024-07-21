@@ -9,6 +9,7 @@ module.exports = mongoose.Schema(
       default: 'VIEWER',
       immutable: true,
     },
+    name: { type: String },
     name: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     reputation: { type: Number, required: true, default: 0 },

@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 module.exports = mongoose.Schema(
   {
+    backdrop: { type: String, required: true },
+    poster: { type: String, required: true },
     title: { type: String, required: true, unique: true },
     director: { type: String, required: true },
     genre: { type: String, required: true },

@@ -7,21 +7,24 @@ const movies = db.movies;
 
 /* Array Methods */
 const findById = (array, id) => array.find((item) => item._id === id);
+const findUser = (username) => users.find((user) => user.name === username);
 
 export const findAllCollections = async () => {
-  return collections.map((collection) => ({
-    ...collection,
-    author: collection.author.map((authorId) => findById(users, authorId)),
-    movies: collection.movies.map((movieId) => findById(movies, movieId)),
-  }));
+  return await collections.map((collection) => {
+    return {
+      ...collection,
+      author: findUser(collection.author),
+      movies: collection.movies.map((movieId) => findById(movies, movieId)),
+    };
+  });
 };
 
 export const findCollectionById = async (id) => {
-  const collection = findById(collections, id);
+  const collection = await findById(collections, id);
   if (collection) {
     return {
       ...collection,
-      author: collection.author.map((authorId) => findById(users, authorId)),
+      author: findUser(collection.author),
       movies: collection.movies.map((movieId) => findById(movies, movieId)),
     };
   }
@@ -33,21 +36,38 @@ export const findCollectionsByTitle = async (title) => {
     .filter((collection) => collection.title === title)
     .map((collection) => ({
       ...collection,
-      author: collection.author.map((authorId) => findById(users, authorId)),
+      author: findUser(collection.author),
       movies: collection.movies.map((movieId) => findById(movies, movieId)),
     }));
 };
 
 export const findCollectionsByUserName = async (username) => {
-  const user = users.find((user) => user.name === username);
+  const user = await findUser(username);
+  if (!user) {
+    throw new Error('User not found');
+  }
+  return await collections
+    .filter((collection) => collection.author.includes(user._id))
+    .map((collection) => ({
+      ...collection,
+      author: user,
+      movies: collection.movies.map((movieId) => findById(movies, movieId)),
+    }));
+};
+
+export const findUserCollectionByTitle = async (username, titleId) => {
+  const user = await findUser(username);
   if (!user) {
     throw new Error('User not found');
   }
   return collections
-    .filter((collection) => collection.author.includes(user._id))
+    .filter(
+      (collection) =>
+        collection.author === username && collection.titleId === titleId
+    )
     .map((collection) => ({
       ...collection,
-      author: collection.author.map((authorId) => findById(users, authorId)),
+      author: user,
       movies: collection.movies.map((movieId) => findById(movies, movieId)),
     }));
 };
@@ -62,7 +82,7 @@ export const createCollection = async (collectionData) => {
 };
 
 export const updateCollection = async (id, collectionData) => {
-  const collectionIndex = collections.findIndex(
+  const collectionIndex = await collections.findIndex(
     (collection) => collection._id === id
   );
   if (collectionIndex === -1) {

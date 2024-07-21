@@ -7,7 +7,8 @@ export default [
     release_date: new Date('2010-07-16'),
     rating: 8.8,
     poster: 'https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/s3TBrRGB1iav7gFOCNx3H31MoES.jpg',
+    year: 2010,
   },
   {
     _id: 'movie2',
@@ -17,7 +18,8 @@ export default [
     release_date: new Date('1999-03-31'),
     rating: 8.7,
     poster: 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 1999,
   },
   {
     _id: 'movie3',
@@ -27,7 +29,8 @@ export default [
     release_date: new Date('1994-09-23'),
     rating: 9.3,
     poster: 'https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/iNh3BivHyg5sQRPP1KOkzguEX0H.jpg',
+    year: 1994,
   },
   {
     _id: 'movie4',
@@ -37,7 +40,8 @@ export default [
     release_date: new Date('1972-03-24'),
     rating: 9.2,
     poster: 'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 1972,
   },
   {
     _id: 'movie5',
@@ -47,7 +51,8 @@ export default [
     release_date: new Date('2008-07-18'),
     rating: 9.0,
     poster: 'https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 2008,
   },
   {
     _id: 'movie6',
@@ -57,7 +62,8 @@ export default [
     release_date: new Date('1994-10-14'),
     rating: 8.9,
     poster: 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 1994,
   },
   {
     _id: 'movie7',
@@ -67,7 +73,8 @@ export default [
     release_date: new Date('1999-10-15'),
     rating: 8.8,
     poster: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 1999,
   },
   {
     _id: 'movie8',
@@ -77,7 +84,8 @@ export default [
     release_date: new Date('1994-07-06'),
     rating: 8.8,
     poster: 'https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 1994,
   },
   {
     _id: 'movie9',
@@ -87,7 +95,8 @@ export default [
     release_date: new Date('2001-12-19'),
     rating: 8.8,
     poster: 'https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 2001,
   },
   {
     _id: 'movie10',
@@ -97,6 +106,7 @@ export default [
     release_date: new Date('1980-05-21'),
     rating: 8.7,
     poster: 'https://image.tmdb.org/t/p/w500/7BuH8itoSrLExs2YZSsM01Qk2no.jpg',
-    year: 2024,
+    backdrop: 'https://image.tmdb.org/t/p/w780/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
+    year: 1980,
   },
 ];
