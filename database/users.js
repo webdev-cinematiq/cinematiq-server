@@ -11,6 +11,7 @@ export default [
   {
     _id: 'user2',
     role: 'CRITIC',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'moviebuff99',
     password: 'password123',
     reputation: 200,
@@ -19,6 +20,7 @@ export default [
   {
     _id: 'user3',
     role: 'VIEWER',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'cinemalover',
     password: 'password123',
     reputation: 50,
@@ -27,6 +29,7 @@ export default [
   {
     _id: 'user4',
     role: 'ADMIN',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'adminuser',
     password: 'password123',
     reputation: 500,
@@ -35,6 +38,7 @@ export default [
   {
     _id: 'user5',
     role: 'VIEWER',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'moviemaniac',
     password: 'password123',
     reputation: 75,
@@ -43,6 +47,7 @@ export default [
   {
     _id: 'user6',
     role: 'CRITIC',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'filmcritic',
     password: 'password123',
     reputation: 150,
@@ -51,6 +56,7 @@ export default [
   {
     _id: 'user7',
     role: 'VIEWER',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'cinephile',
     password: 'password123',
     reputation: 30,
@@ -59,6 +65,7 @@ export default [
   {
     _id: 'user8',
     role: 'VIEWER',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'moviefanatic',
     password: 'password123',
     reputation: 40,
@@ -75,6 +82,7 @@ export default [
   {
     _id: 'user10',
     role: 'VIEWER',
+    avatar: 'https://avatar.iran.liara.run/public/57',
     name: 'flickfan',
     password: 'password123',
     reputation: 20,
