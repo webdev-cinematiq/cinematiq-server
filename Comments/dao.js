@@ -5,25 +5,9 @@ export const createComment = async (comment) => {
   return await model.create(comment);
 };
 
-export const findAllComments = () =>
-  model.find().populate({
-    path: 'users',
-    populate: {
-      path: 'collections',
-      populate: { path: 'movies' },
-      populate: { path: 'genres' },
-    },
-  });
+export const findAllComments = () => model.find();
 
-export const findCommentsByAuthor = (author) =>
-  model.findOne({ author }).populate({
-    path: 'users',
-    populate: {
-      path: 'collections',
-      populate: { path: 'movies' },
-      populate: { path: 'genres' },
-    },
-  });
+export const findCommentsByAuthor = (author) => model.findOne({ author });
 
 export const updateComment = (id, commentData) =>
   model.updateOne({ _id: id }, { $set: commentData });

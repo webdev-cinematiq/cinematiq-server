@@ -13,6 +13,7 @@ export default function CriticRoutes(app) {
 
   const findAllCritics = async (req, res) => {
     const critics = await dao.findAllCritics();
+    console.log('critics', critics);
     res.json(critics);
   };
 
@@ -22,7 +23,7 @@ export default function CriticRoutes(app) {
     res.json(status);
   };
 
-  app.post('/api/critics', createCritic);
+  app.post('/api/:author/critics', createCritic);
   app.get('/api/critics', findAllCritics);
   app.put('/api/critics/:criticId', updateCritic);
   app.delete('/api/critics/:criticId', deleteCritic);

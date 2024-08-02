@@ -2,8 +2,7 @@ import model from './model.js';
 
 export const findAllMovies = () => model.find().populate('genres');
 
-export const findMovieById = async (id) =>
-  model.findById(id).populate('genres');
+export const findMovieById = (id) => model.findById(id).populate('genres');
 
 export const findMovieByPartialTitle = (partialTitle) => {
   const regex = new RegExp(partialTitle, 'i');

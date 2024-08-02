@@ -1,8 +1,8 @@
 import model from './model.js';
 
-export const createCollection = async (collection) => {
+export const createCollection = (collection) => {
   delete collection._id;
-  return await model.create(collection);
+  return model.create(collection);
 };
 
 export const findAllCollections = () =>
@@ -11,7 +11,7 @@ export const findAllCollections = () =>
     populate: { path: 'genres' },
   });
 
-export const findCollectionById = async (id) =>
+export const findCollectionById = (id) =>
   model.findById(id).populate({
     path: 'movies',
     populate: { path: 'genres' },
@@ -50,4 +50,4 @@ export const findCollection = (author, title_id) =>
 export const updateCollection = (id, collectionData) =>
   model.updateOne({ _id: id }, { $set: collectionData });
 
-export const deleteCollection = async (id) => model.deleteOne({ _id: id });
+export const deleteCollection = (id) => model.deleteOne({ _id: id });

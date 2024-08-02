@@ -1,5 +1,4 @@
-import CommentRoutes from './controllers/commentRoutes.js';
-import ReviewRoutes from './controllers/reviewRoutes.js';
+// import CommentRoutes from './controllers/commentRoutes.js';
 
 import cors from 'cors';
 import express from 'express';
@@ -10,13 +9,16 @@ import CollectionRoutes from './Collections/routes.js';
 import MovieRoutes from './Movies/routes.js';
 import GenreRoutes from './Genres/routes.js';
 import UserRoutes from './Users/routes.js';
+import CommentRoutes from './Comments/routes.js';
+import ReviewRoutes from './Reviews/routes.js';
+import CriticRoutes from './Critics/routes.js';
 
 const CONNECTION_STRING =
   process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/cinematiq';
 
 mongoose
   .connect(CONNECTION_STRING)
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => console.log('Connected to MongoDB', CONNECTION_STRING))
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const app = express();
@@ -56,12 +58,13 @@ app.get('/', (req, res) => {
 });
 
 /* routes for each feature */
+GenreRoutes(app);
+MovieRoutes(app);
 CollectionRoutes(app);
 CommentRoutes(app);
-MovieRoutes(app);
-GenreRoutes(app);
 ReviewRoutes(app);
 UserRoutes(app);
+CriticRoutes(app);
 
 process.on('SIGINT', () => {
   server.close();

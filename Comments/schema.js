@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const commentSchema = mongoose.Schema(
   {
-    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    author: { type: String, required: true },
     text: { type: String, required: true },
     created: { type: Date, required: true },
   },

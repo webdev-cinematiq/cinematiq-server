@@ -6,13 +6,14 @@ export const createCritic = (critic) => {
 };
 
 export const findAllCritics = () =>
-  model.find().populate({
-    path: 'comments',
-    populate: {
+  model
+    .find()
+    .populate('user')
+    .populate({
       path: 'reviews',
-      populate: { path: 'movies', populate: { path: 'genres' } },
-    },
-  });
+      populate: { path: 'movie genres' },
+    })
+    .populate('comments');
 
 export const updateCritic = (criticId, critic) =>
   model.updateOne({ _id: criticId }, { $set: critic });
