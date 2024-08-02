@@ -12,7 +12,7 @@ import GenreRoutes from './Genres/routes.js';
 import UserRoutes from './Users/routes.js';
 
 const CONNECTION_STRING =
-  process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/kanbas';
+  process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/cinematiq';
 
 mongoose
   .connect(CONNECTION_STRING)
@@ -20,6 +20,8 @@ mongoose
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const app = express();
+
+// TODO: uncomment to start implementing sessions
 
 // app.use(
 //   cors({
