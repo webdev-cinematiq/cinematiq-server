@@ -5,7 +5,7 @@ const collectionSchema = mongoose.Schema(
     title: { type: String, required: true },
     title_id: { type: String, required: true },
     author: { type: String, required: true },
-    movies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MovieModel' }],
+    movies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }],
     description: { type: String },
     created: { type: Date, required: true },
   },

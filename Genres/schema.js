@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const genreSchema = mongoose.Schema(
   {
-    id: { type: Number },
+    value: { type: Number },
     name: { type: String, required: true },
   },
   { collection: 'genres' }

@@ -42,7 +42,7 @@ export const findCollectionsByAuthor = (author) =>
   });
 
 export const findCollection = (author, title_id) =>
-  model.findOne({ author, title_id }).populate({
+  model.findOne({ author: author, title_id: title_id }).populate({
     path: 'movies',
     populate: { path: 'genres' },
   });

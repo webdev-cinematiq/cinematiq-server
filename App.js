@@ -1,10 +1,5 @@
-// import CollectionRoutes from './controllers/collectionRoutes.js';
 import CommentRoutes from './controllers/commentRoutes.js';
-import DiscussionRoutes from './controllers/discussionRoutes.js';
-// import MovieRoutes from './controllers/movieRoutes.js';
-import ProfileRoutes from './controllers/profileRoutes.js';
 import ReviewRoutes from './controllers/reviewRoutes.js';
-import UserRoutes from './controllers/userRoutes.js';
 
 import cors from 'cors';
 import express from 'express';
@@ -13,6 +8,8 @@ import session from 'express-session';
 import mongoose from 'mongoose';
 import CollectionRoutes from './Collections/routes.js';
 import MovieRoutes from './Movies/routes.js';
+import GenreRoutes from './Genres/routes.js';
+import UserRoutes from './Users/routes.js';
 
 const CONNECTION_STRING =
   process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/kanbas';
@@ -59,9 +56,8 @@ app.get('/', (req, res) => {
 /* routes for each feature */
 CollectionRoutes(app);
 CommentRoutes(app);
-DiscussionRoutes(app);
 MovieRoutes(app);
-ProfileRoutes(app);
+GenreRoutes(app);
 ReviewRoutes(app);
 UserRoutes(app);
 

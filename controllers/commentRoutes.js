@@ -6,11 +6,6 @@ import {
   deleteComment,
 } from '../models/dao/comments.js';
 
-import {
-  addCommentToDiscussion,
-  removeCommentFromDiscussion,
-} from '../models/dao/discussions.js';
-
 export default function CommentRoutes(app) {
   const getAllComments = async (req, res) => {
     try {
@@ -54,8 +49,7 @@ export default function CommentRoutes(app) {
     try {
       const { did } = req.params;
       const newComment = await createComment({ ...req.body });
-      const updatedPost = await addCommentToDiscussion(did, newComment._id);
-      res.status(201).json({ newComment, updatedPost });
+      res.status(201).json({ newComment });
     } catch (error) {
       console.error(error);
       res.status(400).json({ message: error.message });
@@ -83,8 +77,6 @@ export default function CommentRoutes(app) {
       if (!deletedComment) {
         return res.status(404).json({ message: 'Comment not found' });
       }
-
-      await removeCommentFromDiscussion(deletedComment.discussion, cid);
 
       res.status(200).json({ message: 'Comment deleted' });
     } catch (error) {
