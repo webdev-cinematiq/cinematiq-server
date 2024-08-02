@@ -49,7 +49,7 @@ export default function CollectionRoutes(app) {
   app.post('/api/:author/collections', createCollection);
   app.get('/api/collections', findAllCollections);
   app.get('/api/collections/:title', findCollectionByTitle);
-  app.get('/api/:author/collections/:titleId', findCollection);
+  app.get('/api/:author/collection/:titleId', findCollection);
   app.put('/api/:author/collections/:collectionId', updateCollection);
   app.delete('/api/:author/collections/:collectionId', deleteCollection);
 }
