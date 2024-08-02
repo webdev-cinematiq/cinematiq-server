@@ -1,27 +1,55 @@
+// import CommentRoutes from './controllers/commentRoutes.js';
+
+import cors from 'cors';
 import express from 'express';
-import CollectionRoutes from './controllers/collectionRoutes.js';
-import CommentRoutes from './controllers/commentRoutes.js';
-import DiscussionRoutes from './controllers/discussionRoutes.js';
-import ProfileRoutes from './controllers/profileRoutes.js';
-import ReviewRoutes from './controllers/reviewRoutes.js';
-import UserRoutes from './controllers/userRoutes.js';
+import 'dotenv/config';
+import session from 'express-session';
+import mongoose from 'mongoose';
+import CollectionRoutes from './Collections/routes.js';
+import MovieRoutes from './Movies/routes.js';
+import GenreRoutes from './Genres/routes.js';
+import UserRoutes from './Users/routes.js';
+import CommentRoutes from './Comments/routes.js';
+import ReviewRoutes from './Reviews/routes.js';
+import CriticRoutes from './Critics/routes.js';
 
-const session = require('express-session');
-const mongoose = require('mongoose');
+const CONNECTION_STRING =
+  process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/cinematiq';
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/cinematiq';
-const CLIENT_URL = 'http://localhost:3000'; // TODO: update as needed
-const PORT = process.env.PORT || 4000;
+mongoose
+  .connect(CONNECTION_STRING)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const app = express();
 
-mongoose
-  .connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.error(err));
+// TODO: uncomment to start implementing sessions
+
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: process.env.NETLIFY_URL || 'http://localhost:3000',
+//   })
+// );
+// app.use(express.json());
+
+// const sessionOptions = {
+//   secret: process.env.SESSION_SECRET || 'kanbas',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     secure: process.env.NODE_ENV === 'production',
+//     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+//     httpOnly: true,
+//   },
+// };
+
+// if (process.env.NODE_ENV !== 'development') {
+//   sessionOptions.proxy = true;
+//   sessionOptions.cookie.domain = process.env.NODE_SERVER_DOMAIN;
+// }
+
+// app.use(session(sessionOptions));
 
 app.use(cors());
 app.use(express.json());
@@ -30,12 +58,13 @@ app.get('/', (req, res) => {
 });
 
 /* routes for each feature */
+GenreRoutes(app);
+MovieRoutes(app);
 CollectionRoutes(app);
 CommentRoutes(app);
-DiscussionRoutes(app);
-ProfileRoutes(app);
 ReviewRoutes(app);
 UserRoutes(app);
+CriticRoutes(app);
 
 process.on('SIGINT', () => {
   server.close();
@@ -44,6 +73,4 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(process.env.PORT || 4000);
