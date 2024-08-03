@@ -1,7 +1,6 @@
 import * as dao from './dao.js';
 
 export default function MovieRoutes(app) {
-
   const findAllMovies = async (req, res) => {
     const { title } = req.query;
 
@@ -31,7 +30,7 @@ export default function MovieRoutes(app) {
   };
 
   app.get('/api/movies', findAllMovies);
-  app.get('/api/movies/:movieId', findMovieById);
+  app.get('/api/movie/details/:movieId', findMovieById);
   app.get('/api/movies/tmdb/:id', findMovie);
   app.get('/api/movies/:title', findMovieByTitle);
 }

@@ -56,7 +56,7 @@ export default function ReviewRoutes(app) {
   app.get('/api/reviews/:title', findReviewsByText);
   app.get('/api/:name/reviews', findReviewsByAuthor);
   app.get('/api/:name/reviews/:rid', findReviewById);
-  app.get('/api/:author/reviews/:titleId', findReview);
+  app.get('/api/:author/review/:titleId', findReview);
   app.put('/api/:author/reviews/:reviewId', updateReview);
   app.delete('/api/:author/reviews/:reviewId', deleteReview);
 }
