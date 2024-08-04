@@ -17,3 +17,6 @@ export const findGenre = (value) => model.findOne({ value });
 
 export const findGenresByName = (name) =>
   model.findOne({ name });
+
+export const updateGenres = (id, genreData) =>
+  model.updateOne({ id: id }, { $set: genreData }, { $upsert: true });
