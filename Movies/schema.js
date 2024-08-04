@@ -14,6 +14,10 @@ const movieSchema = mongoose.Schema(
     runtime: { type: Number },
     vote_average: { type: Number },
     vote_count: { type: Number },
+    favorite: { type: Boolean, default: false },
+    rated: { type: Boolean, default: false },
+    collections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Collection' }],
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
   },
   { collection: 'movies' }
 );

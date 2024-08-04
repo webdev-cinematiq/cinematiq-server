@@ -1,6 +1,12 @@
 import * as dao from './dao.js';
 
 export default function GenreRoutes(app) {
+  const updateGenre = async (req, res) => {
+    const { id } = req.params;
+    const status = await dao.updateGenre(id, req.body);
+    res.json(status);
+  };
+
   const findAllGenres = async (req, res) => {
     const { name } = req.query;
 
@@ -30,6 +36,7 @@ export default function GenreRoutes(app) {
   };
 
   app.get('/api/genres', findAllGenres);
+  app.put('/api/genres/id', updateGenre);
   app.get('/api/genres/:genreId', findGenreById);
   app.get('/api/genres/tmdb/:value', findGenre);
   app.get('/api/genres/:name', findGenreByName);

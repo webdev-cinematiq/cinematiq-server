@@ -22,42 +22,39 @@ mongoose
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const app = express();
-
-// TODO: uncomment to start implementing sessions
-
+app.use(cors());
+// TODO: delete ^  and uncomment to start implementing sessions
 // app.use(
 //   cors({
-//     credentials: true,
+//     // credentials: true,
 //     origin: process.env.NETLIFY_URL || 'http://localhost:3000',
 //   })
 // );
-// app.use(express.json());
+app.use(express.json());
 
-// const sessionOptions = {
-//   secret: process.env.SESSION_SECRET || 'kanbas',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: {
-//     secure: process.env.NODE_ENV === 'production',
-//     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-//     httpOnly: true,
-//   },
-// };
+const sessionOptions = {
+  secret: process.env.SESSION_SECRET || 'kanbas',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    httpOnly: true,
+  },
+};
 
-// if (process.env.NODE_ENV !== 'development') {
-//   sessionOptions.proxy = true;
-//   sessionOptions.cookie.domain = process.env.NODE_SERVER_DOMAIN;
-// }
+if (process.env.NODE_ENV !== 'development') {
+  sessionOptions.proxy = true;
+  sessionOptions.cookie.domain = process.env.NODE_SERVER_DOMAIN;
+}
 
+// TODO: uncomment to start implementing sessions
 // app.use(session(sessionOptions));
 
-app.use(cors());
-app.use(express.json());
 app.get('/', (req, res) => {
-  res.send('Welcome to Cinematiq!');
+  res.send('Welcome to Cinematiq!'); // TODO: implement landing page
 });
 
-/* routes for each feature */
 GenreRoutes(app);
 MovieRoutes(app);
 CollectionRoutes(app);

@@ -17,3 +17,6 @@ export const findMovie = (id) => model.findOne({ id }).populate('genres');
 
 export const findMoviesByTitle = (title) =>
   model.findOne({ title }).populate('genres');
+
+export const updateMovie = (id, movieData) =>
+  model.updateOne({ id: id }, { $set: movieData }, { $upsert: true });
