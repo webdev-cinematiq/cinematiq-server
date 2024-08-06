@@ -7,6 +7,7 @@ export default function UserRoutes(app) {
   };
 
   const deleteUser = async (req, res) => {
+    console.log(req.body)
     const status = await dao.deleteUser(req.params.userId);
     res.json(status);
   };
@@ -47,7 +48,7 @@ export default function UserRoutes(app) {
   };
 
   const signup = async (req, res) => {
-    const user = await dao.findUserByUsername(req.body.username);
+    const user = await dao.findUserByName(req.body.name);
     if (user) {
       res.status(400).json({ message: 'Username already taken' });
       return;
@@ -58,8 +59,8 @@ export default function UserRoutes(app) {
   };
 
   const signin = async (req, res) => {
-    const { username, password } = req.body;
-    const currentUser = await dao.findUserByCredentials(username, password);
+    const { name, password } = req.body;
+    const currentUser = await dao.findUserByCredentials(name, password);
 
     if (currentUser) {
       req.session.currentUser = currentUser;

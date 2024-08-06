@@ -69,8 +69,8 @@ export const findUsersByRole = (role) =>
       populate: { path: 'genres' },
     });
 
-export const findUserByCredentials = (username, password) =>
-  model.findOne({ username, password });
+export const findUserByCredentials = (name, password) =>
+  model.findOne({ name, password });
 
 export const updateUser = (userId, user) =>
   model.updateOne({ _id: userId }, { $set: user });

@@ -22,18 +22,18 @@ mongoose
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const app = express();
-app.use(cors());
-// TODO: delete ^  and uncomment to start implementing sessions
-// app.use(
-//   cors({
-//     // credentials: true,
-//     origin: process.env.NETLIFY_URL || 'http://localhost:3000',
-//   })
-// );
+
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.NETLIFY_URL || 'http://localhost:3000',
+  })
+);
+
 app.use(express.json());
 
 const sessionOptions = {
-  secret: process.env.SESSION_SECRET || 'kanbas',
+  secret: process.env.SESSION_SECRET || 'cinematiq',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -45,11 +45,14 @@ const sessionOptions = {
 
 if (process.env.NODE_ENV !== 'development') {
   sessionOptions.proxy = true;
-  sessionOptions.cookie.domain = process.env.NODE_SERVER_DOMAIN;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+    domain: process.env.NODE_SERVER_DOMAIN,
+  };
 }
 
-// TODO: uncomment to start implementing sessions
-// app.use(session(sessionOptions));
+app.use(session(sessionOptions));
 
 app.get('/', (req, res) => {
   res.send('Welcome to Cinematiq!'); // TODO: implement landing page
