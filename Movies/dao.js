@@ -65,7 +65,7 @@ export const findAndUpdateMovieCollections = (id, movieData, collectionId) => {
 export const findAndUpdateMovieReviews = (id, movieData, reviewId) => {
   const updateData = {
     $set: movieData,
-    $addToSet: { collections: reviewId },
+    $addToSet: { reviews: reviewId },
   };
 
   return model
