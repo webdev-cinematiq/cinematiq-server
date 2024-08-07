@@ -13,7 +13,6 @@ import CommentRoutes from './Comments/routes.js';
 import ReviewRoutes from './Reviews/routes.js';
 import CriticRoutes from './Critics/routes.js';
 import AdminRoutes from './Admins/routes.js';
-import usersModel from "./Users/model.js";
 
 
 const CONNECTION_STRING =
@@ -23,10 +22,6 @@ mongoose
   .connect(CONNECTION_STRING)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Failed to connect to MongoDB', err));
-
-// const userData = await usersModel.find({});
-// console.log('All data in the user database:');
-// console.log(JSON.stringify(userData, null, 2));
 
 const app = express();
 
