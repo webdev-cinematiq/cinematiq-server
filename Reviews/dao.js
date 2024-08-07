@@ -47,7 +47,7 @@ export const findReviewsByText = (text) =>
 
 export const findReviewsByAuthor = (author) =>
   model
-    .findOne({ author })
+    .find({ author })
     .populate({
       path: 'movie',
       populate: { path: 'genres' },
