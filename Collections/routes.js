@@ -46,8 +46,15 @@ export default function CollectionRoutes(app) {
     res.json(status);
   };
 
+  const findCollectionByAuthor = async (req, res) => {
+    const { author } = req.params;
+    const collection = await dao.findCollectionsByAuthor(author);
+    res.json(collection);
+  };
+
   app.post('/api/:author/collections', createCollection);
   app.get('/api/collections', findAllCollections);
+  app.get('/api/:author/collections', findCollectionByAuthor);
   app.get('/api/collections/:title', findCollectionByTitle);
   app.get('/api/:author/collection/:titleId', findCollection);
   app.put('/api/:author/collections/:collectionId', updateCollection);
