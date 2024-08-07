@@ -14,7 +14,12 @@ export const findAndUpdateMovie = (id, movieData) =>
 export const findAllMovies = () =>
   model.find().populate('genres').populate('collections').populate('reviews');
 
-export const findMovieById = (id) => model.findById(id).populate('genres');
+export const findMovieById = (id) =>
+  model
+    .findById(id)
+    .populate('genres')
+    .populate('collections')
+    .populate('reviews');
 
 export const findMovieByPartialTitle = (partialTitle) => {
   const regex = new RegExp(partialTitle, 'i');
@@ -60,14 +65,8 @@ export const findAndUpdateMovieCollections = (id, movieData, collectionId) => {
 export const findAndUpdateMovieReviews = (id, movieData, reviewId) => {
   const updateData = {
     $set: movieData,
+    $addToSet: { collections: reviewId },
   };
-
-  if (reviewId) {
-    if (!updateData.$addToSet) {
-      updateData.$addToSet = {};
-    }
-    updateData.$addToSet.reviews = reviewId;
-  }
 
   return model
     .findOneAndUpdate({ id: id }, updateData, {
