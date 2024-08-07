@@ -27,7 +27,6 @@ mongoose
 // console.log(JSON.stringify(userData, null, 2));
 
 const app = express();
-// app.use(cors());
 
 app.use(
   cors({
@@ -39,7 +38,7 @@ app.use(
 app.use(express.json());
 
 const sessionOptions = {
-  secret: process.env.SESSION_SECRET || "kanbas",
+  secret: process.env.SESSION_SECRET || "cinematiq",
   resave: false,
   saveUninitialized: false,
 };
