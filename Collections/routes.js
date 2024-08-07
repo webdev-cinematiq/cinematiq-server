@@ -52,7 +52,14 @@ export default function CollectionRoutes(app) {
     res.json(collection);
   };
 
+  const findCollectionsByMovie = async (req, res) => {
+    const { tmdbId } = req.params;
+    const collections = await dao.findCollectionsByMovie(tmdbId);
+    res.json(collections);
+  };
+
   app.post('/api/:author/collections', createCollection);
+  app.get('/api/collections/film/:tmdbId', findCollectionsByMovie);
   app.get('/api/collections', findAllCollections);
   app.get('/api/:author/collections', findCollectionByAuthor);
   app.get('/api/collections/:title', findCollectionByTitle);
