@@ -13,7 +13,6 @@ export default function CriticRoutes(app) {
 
   const findAllCritics = async (req, res) => {
     const critics = await dao.findAllCritics();
-    console.log('critics', critics);
     res.json(critics);
   };
 

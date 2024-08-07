@@ -12,14 +12,16 @@ import UserRoutes from './Users/routes.js';
 import CommentRoutes from './Comments/routes.js';
 import ReviewRoutes from './Reviews/routes.js';
 import CriticRoutes from './Critics/routes.js';
+import AdminRoutes from './Admins/routes.js';
 import usersModel from "./Users/model.js";
+
 
 const CONNECTION_STRING =
   process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/cinematiq';
 
 mongoose
   .connect(CONNECTION_STRING)
-  .then(() => console.log('Connected to MongoDB',))
+  .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 // const userData = await usersModel.find({});
@@ -35,8 +37,6 @@ app.use(
   })
 );
 
-app.use(express.json());
-
 const sessionOptions = {
   secret: process.env.SESSION_SECRET || "cinematiq",
   resave: false,
@@ -51,7 +51,9 @@ if (process.env.NODE_ENV !== "development") {
     domain: process.env.NODE_SERVER_DOMAIN,
   };
 }
+
 app.use(session(sessionOptions));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Welcome to Cinematiq!'); // TODO: implement landing page
@@ -64,6 +66,7 @@ CommentRoutes(app);
 ReviewRoutes(app);
 UserRoutes(app);
 CriticRoutes(app);
+AdminRoutes(app);
 
 process.on('SIGINT', () => {
   server.close();
