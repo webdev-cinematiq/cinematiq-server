@@ -36,7 +36,7 @@ export const findCollectionsByTitle = (title) =>
   });
 
 export const findCollectionsByAuthor = (author) =>
-  model.findOne({ author }).populate({
+  model.find({ author }).populate({
     path: 'movies',
     populate: { path: 'genres' },
   });

@@ -41,8 +41,8 @@ export default function ReviewRoutes(app) {
   };
 
   const findReviewsByAuthor = async (req, res) => {
-    const review = await dao.findReviewsByAuthor(req.params.author);
-    res.json(review);
+    const reviews = await dao.findReviewsByAuthor(req.params.author);
+    res.json(reviews);
   };
 
   const updateReview = async (req, res) => {
@@ -54,8 +54,8 @@ export default function ReviewRoutes(app) {
   app.post('/api/:author/reviews', createReview);
   app.get('/api/reviews', findAllReviews);
   app.get('/api/reviews/:title', findReviewsByText);
-  app.get('/api/:name/reviews', findReviewsByAuthor);
-  app.get('/api/:name/reviews/:rid', findReviewById);
+  app.get('/api/:author/reviews', findReviewsByAuthor);
+  app.get('/api/:author/reviews/:rid', findReviewById);
   app.get('/api/:author/review/:titleId', findReview);
   app.put('/api/:author/reviews/:reviewId', updateReview);
   app.delete('/api/:author/reviews/:reviewId', deleteReview);
