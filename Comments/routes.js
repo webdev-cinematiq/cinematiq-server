@@ -2,6 +2,7 @@ import * as dao from './dao.js';
 
 export default function CommentRoutes(app) {
   const createComment = async (req, res) => {
+    console.log(req.body)
     const comment = await dao.createComment(req.body);
     res.json(comment);
   };
@@ -21,17 +22,26 @@ export default function CommentRoutes(app) {
     const { author } = req.query;
 
     if (author) {
-      const collections = await dao.findCommentsByAuthor(author);
-      res.json(collections);
+      const comments = await dao.findCommentsByAuthor(author);
+      res.json(comments);
       return;
     }
 
-    const collections = await dao.findAllComments();
-    res.json(collections);
+    const comments = await dao.findAllComments();
+    res.json(comments);
+  };
+
+  const findCommentsByReview = async (req, res) => {
+    console.log(req.params)
+    const { reviewId } = req.params;
+    const comments = await dao.findCommentsByReview(reviewId);
+    console.log(comments)
+    res.json(comments);
   };
 
   app.post('/api/:author/comments', createComment);
   app.get('/api/comments', findAllComments);
+  app.get('/api/comments/review/:reviewId', findCommentsByReview);
   app.put('/api/:author/comments/:commentId', updateComment);
   app.delete('/api/:author/comments/:commentId', deleteComment);
 }

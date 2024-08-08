@@ -9,6 +9,8 @@ export const findAllComments = () => model.find();
 
 export const findCommentsByAuthor = (author) => model.findOne({ author });
 
+export const findCommentsByReview = (review) => model.find({ review }).sort({ created: 1 });
+
 export const updateComment = (id, commentData) =>
   model.updateOne({ _id: id }, { $set: commentData });
 
