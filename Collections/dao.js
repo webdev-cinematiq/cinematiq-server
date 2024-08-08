@@ -30,7 +30,7 @@ export const findCollectionByPartialTitle = (partialTitle) => {
 };
 
 export const findCollectionsByTitle = (title) =>
-  model.findOne({ title }).populate({
+  model.find({ title }).populate({
     path: 'movies',
     populate: { path: 'genres' },
   });
@@ -43,6 +43,12 @@ export const findCollectionsByAuthor = (author) =>
 
 export const findCollection = (author, title_id) =>
   model.findOne({ author: author, title_id: title_id }).populate({
+    path: 'movies',
+    populate: { path: 'genres' },
+  });
+
+export const findCollectionsByMovie = (tmdbId) =>
+  model.find({ movies: { $elemMatch: { id: Number(tmdbId) } } }).populate({
     path: 'movies',
     populate: { path: 'genres' },
   });
