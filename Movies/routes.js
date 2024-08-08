@@ -83,7 +83,7 @@ export default function MovieRoutes(app) {
   app.put('/api/movies/:id', findAndUpdateMovie);
   app.put('/api/movies/:id/collections', findAndUpdateMovieCollections);
   app.put('/api/movies/:id/reviews', findAndUpdateMovieReviews);
-  app.get('/api/movie/details/:movieId', findMovieById);
+  app.get('/api/movies/details/:movieId', findMovieById);
   app.get('/api/movies/tmdb/:id', findMovie);
   app.get('/api/movies/:title', findMovieByTitle);
 }
