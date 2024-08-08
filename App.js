@@ -1,5 +1,3 @@
-// import CommentRoutes from './controllers/commentRoutes.js';
-
 import cors from 'cors';
 import express from 'express';
 import 'dotenv/config';
@@ -13,7 +11,6 @@ import CommentRoutes from './Comments/routes.js';
 import ReviewRoutes from './Reviews/routes.js';
 import CriticRoutes from './Critics/routes.js';
 import AdminRoutes from './Admins/routes.js';
-
 
 const CONNECTION_STRING =
   process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/cinematiq';
@@ -33,15 +30,15 @@ app.use(
 );
 
 const sessionOptions = {
-  secret: process.env.SESSION_SECRET || "cinematiq",
+  secret: process.env.SESSION_SECRET || 'cinematiq',
   resave: false,
   saveUninitialized: false,
 };
 
-if (process.env.NODE_ENV !== "development") {
+if (process.env.NODE_ENV !== 'development') {
   sessionOptions.proxy = true;
   sessionOptions.cookie = {
-    sameSite: "none",
+    sameSite: 'none',
     secure: true,
     domain: process.env.NODE_SERVER_DOMAIN,
   };
@@ -51,7 +48,7 @@ app.use(session(sessionOptions));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Cinematiq!'); // TODO: implement landing page
+  res.send('Welcome to Cinematiq!');
 });
 
 GenreRoutes(app);
