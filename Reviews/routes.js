@@ -11,9 +11,9 @@ export default function ReviewRoutes(app) {
     res.json(status);
   };
 
+
   const findAllReviews = async (req, res) => {
     const { text } = req.query;
-
     if (text) {
       const reviews = await dao.findReviewByPartialText(text);
       res.json(reviews);

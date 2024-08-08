@@ -12,6 +12,8 @@ import UserRoutes from './Users/routes.js';
 import CommentRoutes from './Comments/routes.js';
 import ReviewRoutes from './Reviews/routes.js';
 import CriticRoutes from './Critics/routes.js';
+import AdminRoutes from './Admins/routes.js';
+
 
 const CONNECTION_STRING =
   process.env.MONGO_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/cinematiq';
@@ -22,34 +24,31 @@ mongoose
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const app = express();
-app.use(cors());
-// TODO: delete ^  and uncomment to start implementing sessions
-// app.use(
-//   cors({
-//     // credentials: true,
-//     origin: process.env.NETLIFY_URL || 'http://localhost:3000',
-//   })
-// );
-app.use(express.json());
+
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:3000' || process.env.NETLIFY_URL,
+  })
+);
 
 const sessionOptions = {
-  secret: process.env.SESSION_SECRET || 'kanbas',
+  secret: process.env.SESSION_SECRET || "cinematiq",
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    httpOnly: true,
-  },
 };
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV !== "development") {
   sessionOptions.proxy = true;
-  sessionOptions.cookie.domain = process.env.NODE_SERVER_DOMAIN;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+    domain: process.env.NODE_SERVER_DOMAIN,
+  };
 }
 
-// TODO: uncomment to start implementing sessions
-// app.use(session(sessionOptions));
+app.use(session(sessionOptions));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Welcome to Cinematiq!'); // TODO: implement landing page
@@ -62,6 +61,7 @@ CommentRoutes(app);
 ReviewRoutes(app);
 UserRoutes(app);
 CriticRoutes(app);
+AdminRoutes(app);
 
 process.on('SIGINT', () => {
   server.close();
