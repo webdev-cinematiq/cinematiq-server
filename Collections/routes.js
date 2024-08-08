@@ -42,6 +42,7 @@ export default function CollectionRoutes(app) {
 
   const updateCollection = async (req, res) => {
     const { collectionId } = req.params;
+    console.log(collectionId);
     const status = await dao.updateCollection(collectionId, req.body);
     res.json(status);
   };
@@ -59,6 +60,7 @@ export default function CollectionRoutes(app) {
   };
 
   app.post('/api/:author/collections', createCollection);
+  app.get('/api/collections/details/:collectionId', findCollectionById);
   app.get('/api/collections/film/:tmdbId', findCollectionsByMovie);
   app.get('/api/collections', findAllCollections);
   app.get('/api/:author/collections', findCollectionByAuthor);
