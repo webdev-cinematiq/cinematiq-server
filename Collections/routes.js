@@ -42,7 +42,6 @@ export default function CollectionRoutes(app) {
 
   const updateCollection = async (req, res) => {
     const { collectionId } = req.params;
-    console.log(collectionId);
     const status = await dao.updateCollection(collectionId, req.body);
     res.json(status);
   };
