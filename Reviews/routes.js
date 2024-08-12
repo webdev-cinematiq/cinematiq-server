@@ -7,10 +7,9 @@ export default function ReviewRoutes(app) {
   };
 
   const deleteReview = async (req, res) => {
-    const status = await dao.deleteReview(req.params.reviewId);
+    const status = await dao.deleteReview(req.body._id);
     res.json(status);
   };
-
 
   const findAllReviews = async (req, res) => {
     const { text } = req.query;
