@@ -2,7 +2,6 @@ import * as dao from './dao.js';
 
 export default function CommentRoutes(app) {
   const createComment = async (req, res) => {
-    console.log(req.body)
     const comment = await dao.createComment(req.body);
     res.json(comment);
   };
@@ -32,10 +31,8 @@ export default function CommentRoutes(app) {
   };
 
   const findCommentsByReview = async (req, res) => {
-    console.log(req.params)
     const { reviewId } = req.params;
     const comments = await dao.findCommentsByReview(reviewId);
-    console.log(comments)
     res.json(comments);
   };
 
@@ -43,5 +40,5 @@ export default function CommentRoutes(app) {
   app.get('/api/comments', findAllComments);
   app.get('/api/comments/review/:reviewId', findCommentsByReview);
   app.put('/api/:author/comments/:commentId', updateComment);
-  app.delete('/api/:author/comments/:commentId', deleteComment);
+  app.delete('/api/comments/:commentId', deleteComment);
 }
